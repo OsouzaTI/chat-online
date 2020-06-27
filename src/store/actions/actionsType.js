@@ -1,0 +1,7 @@
+export const SET_FILTRO = 'SET_FILTRO'
+export const SET_USER = 'SET_USER'
+export const ADD_CHANNEL = 'ADD_CHANNEL'
+export const SET_CHANNELS = 'SET_CHANNELS'
+export const ADD_MESSAGE = 'ADD_MESSAGE'
+export const SET_MESSAGE = 'SET_MESSAGE'
+export const SET_NAME = 'SET_NAME'
