@@ -1,18 +1,34 @@
 import React, { useState } from 'react'
 import {
-    MessageContainer
+    MessageContainer,
+    AlertMessage as ALM
 } from './styles'
-import { Form } from 'react-bootstrap'
+import { Form, Alert } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { addMessage } from '../store/actions/messages'
 import { connect } from 'react-redux'
+import { InfoOutlined } from '@material-ui/icons'
+
+export function AlertMessage(type, message){
+    return (
+        <ALM>  
+            <div style={{width: '50%'}}>
+                <Alert variant={type} role={'alert'}>
+                    <InfoOutlined />    {message}
+                </Alert>
+            </div>          
+        </ALM>
+    )
+}
 
 function MessageArea(props) {
+    const [show, setShow] = useState(false)
     const [message, setMessage] = useState('');
+    
     const sendMessage = async(event) => {
         const key = event.key;
         if(key === 'Enter'){
-            if(props.user._key){
+            if(props.user._key && props.user.name){
                 return new Promise(resolve => {
                     const msg = {
                         name: props.name,
@@ -27,6 +43,10 @@ function MessageArea(props) {
                 })
             }else{
                 console.log('Usuario nulo')
+                setShow(true)
+                setTimeout(() => {
+                    setShow(false)
+                }, 5000);
             }
         }
     }
@@ -42,6 +62,7 @@ function MessageArea(props) {
                     type={'text'}
                     onChange={handlerMessage}
                     onKeyUp={sendMessage}/>
+                {show ? AlertMessage('danger', 'Digite um nome(set Name) e ou escolha um canal'):null}
             </div>
         </MessageContainer>
     )

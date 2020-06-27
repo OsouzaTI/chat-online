@@ -29,13 +29,14 @@ function UserArea(props) {
     }
     
     return (
-        <UserDescription>
+        <UserDescription style={{display: 'flex', flexDirection: 'column'}}>
+            <div style={{display: 'flex', flex: 1,}}>
             <Search>
                 <div style={{flex: 1}}>
                     <img style={{width: avatar, height: avatar, borderRadius: avatar/2}} src={'https://www.dclick.com.br/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'}/>                    
                 </div>
                 <div style={{
-                    flex: .5,
+                    flex: 1,
                     display: 'flex',
                     justifyContent: 'space-around'
                 }}>
@@ -43,13 +44,14 @@ function UserArea(props) {
                     <ModalComponentName title={'Set Name'}/>
                 </div>
             </Search>
+            </div>
             <div style={{display:'flex', justifyContent: "center", alignItems: 'center'}}>{props.user}</div>
-            <Search color={'white'}>
-                <SC />
-                <Form>
-                    <Form.Control type={'text'} onChange={changeFiltro}/>
-                </Form>                
-            </Search>            
+            <div style={{display: 'flex', flex: 1,}}>
+                <Search color={'white'} style={{flex: 1, }}>
+                    <SC />                
+                    <Form.Control size={"sm"} style={{width: '80%'}}type={'text'} onChange={changeFiltro}/>                               
+                </Search>            
+            </div>
         </UserDescription>
     )
 }

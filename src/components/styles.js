@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 const cores = require('./colors/default.json')
 
 export const Home = styled.div`
@@ -14,7 +14,7 @@ export const Grid = styled.div`
 
     display: grid;
     grid-template-columns: 240px auto;
-    grid-template-rows: 180px auto 100px;
+    grid-template-rows: 200px auto 100px;
     grid-template-areas: 
         'UA DA'
         'LA DA'
@@ -70,7 +70,6 @@ export const Search = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 50%;
     justify-content: space-between;
     background-color: ${props => props.color ? props.color : null};
     padding: 0 10px;
@@ -102,4 +101,24 @@ export const MensagemItem = styled.div`
         transition: .2s;
         background-color: rgb(237, 237, 237);
     }
+`;
+
+const fadeIn = keyframes`
+
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+
+`;
+
+export const AlertMessage = styled.div`
+
+    display: flex;
+    position: absolute;
+    top: 10px;left: 0px;
+    /* background-color: red; */
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    animation: ${fadeIn}  3s linear forwards;
+
 `;

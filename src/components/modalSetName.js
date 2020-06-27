@@ -3,7 +3,9 @@ import {Modal, Button, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from 'react-redux'
 import { setName as setNickName } from '../store/actions/user'
+import { AlertMessage } from './MessageArea'
 function ModalComponentName(props){
+    const [alert , setAlert] = useState(false)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -20,10 +22,15 @@ function ModalComponentName(props){
         console.log('clicou')
         props.onSetName(name);
         handleClose()
+        setAlert(true);
+        setTimeout(() => {
+            setAlert(false);
+        }, 5000);
     }
     
     return (
-        <>
+        <> 
+            {alert ? AlertMessage('success', 'Nome salvo momentâneamente'):null}
             <Button variant={'link'} onClick={handleShow}>
                 {props.title}
             </Button>
